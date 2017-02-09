@@ -11,8 +11,7 @@ $datapoints = "datapoints";
 <html lang="en">
     
     <head>
-        <script async defer src="https://maps.googleapis.com/maps/api/jskey=AIzaSyAxKAbTtKDKGJL62koh5wns8Fv1pYa9f3E&callback=initMap">
-        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxKAbTtKDKGJL62koh5wns8Fv1pYa9f3E&callback=initMap"></script>
         <script type="text/javascript" src="/resources/js/report.js"></script>
         <script type="text/javascript" src="external/js/jquery-3.1.1.js"></script>
         
@@ -33,11 +32,10 @@ $datapoints = "datapoints";
                     </a>
                     
                     <ul class="main-nav">
-                        <li><a href="#">Home</a></li> <!--link to index.html-->
-                        <li><a href="#">Search</a></li> <!--link to search.html-->
-                        <li><a href="#">Report Generation</a></li> <!--link to report.html-->
-                        <li><a href="#">Help</a></li> <!--link to help.html-->
-                        <li><a href="#"><i class="ion-power"></i></a></li> <!--link to login.html-->
+                        <li><a href="#"><i class="ion-ios-home-outline icon-nav"></i></a></li> <!--link to index.html-->
+                        <li><a href="#"><i class="ion-ios-search icon-nav"></i></a></li> <!--link to search.html-->
+                        <li><a href="#"><i class="ion-ios-pie-outline icon-nav"></i></a></li> <!--link to report.html-->
+                        <li><a href="#"><i class="ion-ios-information-outline icon-nav"></i></a></li> <!--link to help.html-->
                     </ul>
                 </div>
             </nav>
@@ -122,6 +120,8 @@ $datapoints = "datapoints";
             initMap();
             //initMapTest();
         </script>
+        
+        <script type="text/javascript" src="js/index.js"></script>
         
         <div class="row">
           <h2>Statistics</h2>

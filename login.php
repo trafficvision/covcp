@@ -1,6 +1,6 @@
 <?php include "db.php";
 // if login button is clicked
-if (isset($_POST['login'])) {
+if (isset($_POST['loginSubmit'])) {
     
     // save username and password
     $username = $_POST['username'];

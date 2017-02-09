@@ -35,5 +35,13 @@ include "functions.php";
         
         <h1>Search</h1>
         
+        <div class="row">
+            <section class="side-bar">
+                <h2>Filters</h2>
+                <!-- dropdown menus -->
+            </section>
+        </div>
+            
+        <script src="search.js"></script>
     </body>
 </html>

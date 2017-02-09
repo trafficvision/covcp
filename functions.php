@@ -59,29 +59,3 @@ function displayStats($attribute) {
     echo "<td>" . stdDev($array) . "</td>";
     echo "</tr>";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
