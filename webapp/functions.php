@@ -1,42 +1,5 @@
 <?php include "db.php";
 
-function showData($attribute) {
-    global $connection;
-    $query = "SELECT * FROM datapoints GROUP BY " . $attribute;
-    $result = mysqli_query($connection, $query);
-    if (!$result) {
-        die('Query FAILED' . mysqli_error());
-    }
-    
-    while($row = mysqli_fetch_assoc($result)) {
-        $data = $row[$attribute];
-                           
-        echo "<option value=''>$data</option>";
-    }
-}
-
-function showDayOfWeek($dateAttribute) {
-    global $connection;
-    $query = "SELECT * FROM datapoints GROUP BY " . $dateAttribute;
-    $result = mysqli_query($connection, $query);
-    if (!$result) {
-        die('Query FAILED' . mysqli_error());
-    }
-    
-    while($row = mysqli_fetch_assoc($result)) {
-        $date = $row[$dateAttribute];
-        
-        $unixTimestamp = strtotime($date);
-        
-        $weekday = date("l", $unixTimestamp);
-            
-                           
-        echo "<option value=''>$weekday</option>";
-    }
-}
-
-<?php include "db.php";
-
 function showData($attribute, $table) {
     global $connection;
     $query = "SELECT * FROM $table GROUP BY " . $attribute;
@@ -89,10 +52,28 @@ function displayStats($attribute) {
     $array = createColumnArray($attribute);
     echo "<tr>";
     echo "<td>$attribute</td>";
-    echo "<td>" . max($array) . "</td>";
-    echo "<td>" . min($array) . "</td>";
+    echo "<td>" . getMax($array) . "</td>";
+    echo "<td>" . getMin($array) . "</td>";
     echo "<td>" . getAverage($array) . "</td>";
     echo "<td>" . getMedian($array) . "</td>";
     echo "<td>" . stdDev($array) . "</td>";
     echo "</tr>";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> changed the weird git commit extras:functions.php
