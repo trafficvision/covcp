@@ -1,6 +1,9 @@
 <?php
-include "db.php";
-include "functions.php";
+include_once "db.php";
+include_once "functions.php";
+include_once "Algorithms.php";
+
+$datapoints = "datapoints";
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +11,7 @@ include "functions.php";
 <html lang="en">
     
     <head>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxKAbTtKDKGJL62koh5wns8Fv1pYa9f3E&callback=initMap"></script>
         <script type="text/javascript" src="/resources/js/report.js"></script>
         <script type="text/javascript" src="external/js/jquery-3.1.1.js"></script>
         
@@ -28,11 +32,10 @@ include "functions.php";
                     </a>
                     
                     <ul class="main-nav">
-                        <li><a href="#">Home</a></li> <!--link to index.html-->
-                        <li><a href="#">Search</a></li> <!--link to search.html-->
-                        <li><a href="#">Report Generation</a></li> <!--link to report.html-->
-                        <li><a href="#">Help</a></li> <!--link to help.html-->
-                        <li><a href="#"><i class="ion-power"></i></a></li> <!--link to login.html-->
+                        <li><a href="#"><i class="ion-ios-home-outline icon-nav"></i></a></li> <!--link to index.html-->
+                        <li><a href="#"><i class="ion-ios-search icon-nav"></i></a></li> <!--link to search.html-->
+                        <li><a href="#"><i class="ion-ios-pie-outline icon-nav"></i></a></li> <!--link to report.html-->
+                        <li><a href="#"><i class="ion-ios-information-outline icon-nav"></i></a></li> <!--link to help.html-->
                     </ul>
                 </div>
             </nav>
@@ -50,54 +53,60 @@ include "functions.php";
                 <option value="tripID" selected>TripID</option>
                 <?php
                 $tripID = "TripID";
-                showData($tripID);
+                showData($tripID, $datapoints);
                 ?>
-            </select>   
-            
-            <select name="longitude">
+                </select>  
+               
+                <select name="longitude">
                 <!-- pre-selected option -->
                 <option value="longitude" selected>Longitude</option>
                 <?php
                 $longitude = "longitude";
-                showData($longitude);
+                showData($longitude, $datapoints);
                 ?>
-            </select>      
+                </select>    
             
-            <select name="latitude">
+                <select name="latitude">
                 <!-- pre-selected option -->
                 <option value="latitude" selected>Latitude</option>
                 <?php
                 $latitude = "latitude";
-                showData($latitude);
+                showData($latitude, $datapoints);
                 ?>
-            </select>   
+                </select>   
             
-            <select name="date">
+                <select name="date">
                 <!-- pre-selected option -->
                 <option value="date" selected>Date</option>
                 <?php
                 $date = "date";
-                showData($date);
+                showData($date, $datapoints);
                 ?>
-            </select>   
+                </select>   
             
-            <!-- add day option -->
-            <select name="weekday">
+                <!-- add day option -->
+                <select name="weekday">
                 <!-- pre-selected option -->
                 <option value="weekday" selected>Day of Week</option>
                 <?php
                 $date = "date";
-                showDayOfWeek($date);
+                showDayOfWeek($date, $datapoints);
                 ?>
-            </select>
+                </select>
             
-            <select name="time">
+                <select name="time">
                 <!-- pre-selected option -->
-                <option value="time" selected>Time</option>
+                <option value="time" selected>Start Time</option>
                 <?php
                 $time = "time";
-                showData($time);
+                showData($time, $datapoints);
                 ?>
+                </select>
+                
+                <form class="" action="report.php" method="post">
+                    <button name="submit">Generate Report</button>
+                </form>
+                
             </section>
         </div>
         
@@ -106,7 +115,34 @@ include "functions.php";
             <div id="map"></div>
         </div>
         
+        <!-- Google Maps API -->
+        <script>
+            initMap();
+            //initMapTest();
+        </script>
         
+        <script type="text/javascript" src="js/index.js"></script>
+        
+        <div class="row">
+          <h2>Statistics</h2>
+           <table style="width:100%">
+            <tr>
+                <th>Data</th>
+                <th>Maximum</th>
+                <th>Minimum</th> 
+                <th>Average</th>
+                <th>Median</th>
+                <th>Standard Deviation</th>
+            </tr>
+            <?php
+            if (isset($_POST['submit'])) {
+                displayStats('speed');
+                displayStats('acceleration');
+            }
+            ?>
+            </table>
+
+        </div>
         
     </body>
 </html>
