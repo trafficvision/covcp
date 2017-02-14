@@ -3,6 +3,24 @@
 <html lang="en">
     
     <head>
+        <!-- Firebase services -->
+        <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-database.js"></script>
+        <!-- <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-storage.js"></script> -->
+        <!-- <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-messaging.js"></script> -->
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyCtKeJK28bK-jIN1dbfrqH9qzIdPwyHCG4",
+            authDomain: "covcp-60f08.firebaseapp.com",
+            databaseURL: "https://covcp-60f08.firebaseio.com",
+            storageBucket: "covcp-60f08.appspot.com",
+            messagingSenderId: "585359320751"
+          };
+          firebase.initializeApp(config);
+        </script>
+
         <link rel="stylesheet" type="text/css" href="external/css/ionicons.min.css"> <link rel="stylesheet" type="text/css" href="external/css/columns/col.css">
         <link rel="stylesheet" type="text/css" href="external/css/columns/3cols.css">
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
@@ -56,6 +74,7 @@
             </div>
         </section>
 
+        
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>

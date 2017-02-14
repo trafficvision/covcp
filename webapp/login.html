@@ -1,53 +1,66 @@
 <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sample FirebaseUI App</title>
 
-<html lang="en">
-    
-    <head>
-        <link rel="stylesheet" type="text/css" href="external/css/ionicons.min.css">
+    <!-- Firebase services snippet -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-database.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-storage.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-messaging.js"></script> -->
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCtKeJK28bK-jIN1dbfrqH9qzIdPwyHCG4",
+        authDomain: "covcp-60f08.firebaseapp.com",
+        databaseURL: "https://covcp-60f08.firebaseio.com",
+        storageBucket: "covcp-60f08.appspot.com",
+        messagingSenderId: "585359320751"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <!-- End of Firebase services snippet -->
+
+    <!-- FirebaseUI for Web — Auth -->
+    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+    <script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: 'http://localhost/covcp/webapp/index.html',
+        signInFlow: 'popup',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+          // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+           firebase.auth.EmailAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        tosUrl: 'http://localhost/covcp/help.html'
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="external/css/ionicons.min.css">
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
         <title>Traffic Vision</title>
     </head>
-    
-    <body>
-        <header>
-            <div class="row">
-                <img class="header-logo" src="resources/img/logo.png" alt="Traffic Vision Logo">
-            </div>        
-        </header>
-        
-        <div class="login-page">
-            <div class="form">
-                <form class="register-form">
-                    <input type="text" placeholder="name"/>
-                    <input type="password" placeholder="password"/>
-                    <input type="text" placeholder="email address"/>
-                    <button>create</button>
-                    <p class="message">Already registered? <a href="#">Sign In</a></p>
-                </form>
-
-                <form class="login-form" action="login.php" method="post">
-                    <input type="text" name="username" placeholder="username" id="username"/>
-                    <input type="password" name="password" placeholder="password" id="password"/>
-                    <button name="loginSubmit">login</button>
-                    <p class="message">Not registered? <a href="#">Create an account</a></p>
-                </form>
-            </div>
-        </div>
-        
-        <!--
-        <div class="login-container">
-            <form>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="username" id="username"/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="password" id="password"/>
-                </div>
-                <button type="submit" class="btn login-btn">Log In</button>
-            </form>
-        </div>
-        -->
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+  <body>
+    <header>
+      <div class="row">
+          <img class="header-logo" src="resources/img/logo.png" alt="Traffic Vision Logo">
+      </div>        
+    </header>
+    <h1>   </h1>
+    <div id="firebaseui-auth-container"></div>
+  </body>
 </html>
