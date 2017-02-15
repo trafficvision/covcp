@@ -41,8 +41,7 @@ function getMedian($arr) {
             
             
             
-// find standard deviation
-// Population or sample SD?
+// find sample standard deviation
 function stdDev($arr) {
     // create an array filled with the average value of the input array
     $average = getAverage($arr);
@@ -56,12 +55,20 @@ function stdDev($arr) {
     }
                 
     // map square of the difference between each value and the average value
-                $squareDiffs = array_map("sd_square", $arr, $averages);
-                
+    $squareDiffs = array_map("sd_square", $arr, $averages);
+    
+    // sum of squareDiffs
+    $sumDiffs = array_sum($squareDiffs);
+    
+    // divide sumDiffs by number of values - 1
+    $variance = $sumDiffs / (count($squareDiffs) - 1);
+    /*
+    // Code in comments is to calculate population SD
     // Find sum of squareDiffs values and divide by number of values (ie. find average of squareDiffs)
     $avgSquareDiff = getAverage($squareDiffs);
-
     $stdDev = sqrt($avgSquareDiff);
+    */
+    $stdDev = sqrt($variance);
     return $stdDev;
 }
 //test
