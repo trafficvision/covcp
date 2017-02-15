@@ -52,28 +52,11 @@ function displayStats($attribute) {
     $array = createColumnArray($attribute);
     echo "<tr>";
     echo "<td>$attribute</td>";
-    echo "<td>" . getMax($array) . "</td>";
-    echo "<td>" . getMin($array) . "</td>";
+    echo "<td>" . max($array) . "</td>";
+    echo "<td>" . min($array) . "</td>";
     echo "<td>" . getAverage($array) . "</td>";
     echo "<td>" . getMedian($array) . "</td>";
     echo "<td>" . stdDev($array) . "</td>";
     echo "</tr>";
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> changed the weird git commit extras:functions.php

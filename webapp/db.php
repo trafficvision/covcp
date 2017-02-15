@@ -11,3 +11,4 @@ if (!$connection) {
 // server: traffic-vision-master.comcdsygcrhe.us-east-1.rds.amazonaws.com
 // username: tvvancouver
 // password: not sure ('' or covcp2017 maybe)
+?>
