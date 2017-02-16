@@ -1,58 +1,42 @@
-//RUNS ON SERENA'S LOCAL DATABASE UNTIL AWS SET UP
+<?php 
+include "db.php";
 
-<?php
-    //if($_GET['q'] == 'Search...'){
-        //header('Location: search_function.php');
-    //}
-    if($_GET['q'] !== ''){
-        $con = mysql_connect('localhost','root','TestCOV345');
-        $db = mysql_select_db('cov_sample_data')
-?>
-    <head>
-    <head></head>
-        <script type="text/javascript">
-            function active(){
-                var searchBar = document.getElementById('searchBar');
-                
-                if(searchBar.value == 'Search...'){
-                    searchBar.value == ''
-                    searchBar.placeholder = 'Search...'
-                }
-            }
-        </script>
-    </head>
-    <body>
-        <form action="search_function.php" method="GET" id="searchForm" />
-            <input type="text" id="searchBar" placeholder="" value="Search..." maxlength="25" autocomplete="off" onMouseDown="active();" onBlur="" />
-            <input type="submit" name="submit" id="searchBtn" value="Go!" />
-        </form>
-        <?php
-            
-            if(!isset($_POST['submit'])){
-                echo '';
-            } else {
-            
-            $query = mysql_query("SELECT * FROM trips WHERE tripID LIKE '%$q%' OR startTime LIKE '%$q' ");
-            $num_row = mysql_num_rows($query);
+// if search button is clicked
+if(isset($_POST['searchSubmit'])){
     
-            while ($row = mysql_fetch_array($query)){
-                $tripID = $row['tripID'];
-                $segmentID = $row['segmentID'];
-                $userID = $row['userID'];
-                $startTime = $row['startTime'];
-                $endTime = $row['endTime'];
-                $dataPoints = $row['dataPoints'];
-                $flags = $row['flags'];
-                
-                echo '<h3>' . $tripID . '</h3><p>' . startTime '</p><br />';
-            }
-            }
-        ?>
-    </body>
-</html>
+    // save input
+    $input = $_POST['searchBar'];
+    
+    // check if valid input entered
+    if ($input) {
+        
+        // clean incoming info
+        $input = mysqli_real_escape_string($connection, $input);
+        
+        // query for info
+        $query = "SELECT * FROM datapoints WHERE TripID = '{$input}'";
+        $result = mysqli_query($connection, $query);
+        if (!$result) {
+            die('Query FAILED' . mysqli_error($connection));
+        }
+        
+        
+        while ($row = mysqli_fetch_array($result)){
+            $tripID = $row['TripID'];
+            //$segmentID = $row['segmentID'];
+            //$userID = $row['userID'];
+            //$startTime = $row['startTime'];
+            //$endTime = $row['endTime'];
+            //$dataPoints = $row['dataPoints'];
+            $flagged = $row['flagged'];
 
-<?php
-    } else {
-        header('Location: search_function.php')
+            echo '<h3>' . $tripID . '</h3>';
+            echo '<h3>' . $flagged . '</h3>';
+        }
     }
+    else {
+        echo "<div class='form-group'>Please fill in all fields!</div>";
+    }
+}
+
 ?>
